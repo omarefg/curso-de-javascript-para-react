@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Components</title>
+    <style>
+        body {
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        function render (component, container) {
+            container.innerHTML = component
+        }
+
+        function component (strings, ...values) {
+            return function (props) {
+                let template = [...strings]
+                values.forEach((val, idx) => {
+                    template[idx] += props[val]
+                })
+                return template.join('')
+            }
+        }
+
+        const tags = ['h1', 'h2', 'div']
+        const styled = {}
+
+        function fillStyled() {
+            tags.forEach(tag => {
+                styled[tag] = (styles) => {
+                    return (content) => {
+                        return `
+                            <${tag} style="${styles}">
+                                ${content}
+                            </${tag}>
+                        `
+                    }
+                }
+            })
+        }
+        fillStyled()
+
+
+        const TitleStyled = styled.h1`
+            color: orangered;
+            font-family: system-ui;
+            font-size: 50px;
+            text-shadow: 2px 2px 0 white;
+            line-height: 100vh;
+        `
+
+        const props = {
+            message: 'Windows'
+        }
+
+        const Title = component`<marquee>${'message'}</marquee>`(props)
+
+        render(TitleStyled(Title), window.container)
+    </script>
+</body>
+</html>
