@@ -3,9 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Template Literals - expresiones</title>
 </head>
 <body>
-
+    <script>
+        const name = "Omar"
+        console.log(`My name is ${name}`)
+        console.log(`My name is ${29}`)
+        console.log(`This is ${'Curso de JavaScript para React'}`)
+        console.log(`My name is ${x = 'omar'}`)
+        console.log(`My name is ${function name() { return 'El Osmi' }}`)
+        console.log(`My name is ${(function() { return 'El Osmi' })()}`)
+        console.log(`My name is ${() => 'El Osmi'}`)
+        console.log(`My name is ${true ? 'El Osmi' : 'Nah'}`)
+        console.log(`My name is ${true && 'El Osmi'}`)
+        console.log(`My name is ${false ? 'El Osmi' : 'Nah'}`)
+        console.log(`My name is ${false && 'Nah'}`)
+        console.log(`My name is ${['a', 'b'].map(letter => letter.toUpperCase())}`)
+    </script>
 </body>
 </html>
