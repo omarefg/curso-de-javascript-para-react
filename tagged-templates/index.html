@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagged Templates</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            font-family: system-ui;
+            background-color: #f49097;
+            color: #f2f5ff;
+            font-size: 2em;
+            text-shadow: 1px 1px rgba(0, 0, 0, .5);
+        }
+
+        strong {
+            color: #f49097;
+            padding: .15em .4em;
+            background-color: #f2f5ff;
+            border-radius: 20px;
+            border: 2px solid #f2f5ff;
+        }
+    </style>
+</head>
+<body>
+    <p id="message"></p>
+    <script>
+        function taggedTemplate(strings, ...values) {
+            let html = ''
+            strings.forEach((str, idx) => {
+                const strong = values[idx] ? `<strong>${values[idx]}</strong>` : ''
+                html += `${str}${strong}`
+            })
+            return html
+        }
+        document.querySelector('#message').innerHTML = taggedTemplate`
+            El ${'trabajo duro'} supera al ${'talento natural'}
+        `
+    </script>
+</body>
+</html>
